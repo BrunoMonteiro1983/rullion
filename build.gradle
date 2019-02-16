@@ -20,3 +20,9 @@ jar {
         attributes "Main-Class": "net.brunomonteiro.rullion.Application"
     }
 }
+
+test {
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+    }
+}
