@@ -17,7 +17,7 @@ dependencies {
 
 jar {
     manifest {
-        attributes "Main-Class": "net.brunomonteiro.rullion.Application"
+        attributes "Main-Class": "net.brunomonteiro.rullion.ConsoleApplication"
     }
 }
 

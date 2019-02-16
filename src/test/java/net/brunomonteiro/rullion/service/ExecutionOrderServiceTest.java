@@ -13,9 +13,7 @@ import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.*;
 
 public class ExecutionOrderServiceTest {
-	//	tasks : []
-	//	dependencies: []
-	//	result: []
+	
 	@Test
 	public void testEmptyTasksReturnEmptyResult() {
 		List<String> tasks = new ArrayList<>();
@@ -25,9 +23,6 @@ public class ExecutionOrderServiceTest {
 		assertTrue(executionOrder.isEmpty());
 	}
 
-	//	tasks: [a,b]
-	//	dependencies: []
-	//	result: [a,b]
 	@Test
 	public void testEmptyDependenciesKeepDeclaredOrder() {
 		List<String> tasks = Arrays.asList("a", "b");
@@ -37,9 +32,6 @@ public class ExecutionOrderServiceTest {
 		assertEquals(Arrays.asList("a", "b"), executionOrder);
 	}
 
-	//	tasks: [a,b]
-	//	dependencies: [a => b]
-	//	result: [b,a]
 	@Test
 	public void testDependencyOnBReturnsBFirst() {
 		List<String> tasks = Arrays.asList("a", "b");
@@ -50,9 +42,6 @@ public class ExecutionOrderServiceTest {
 		assertEquals(Arrays.asList("b", "a"), executionOrder);
 	}
 
-	//	tasks: [a,b,c,d]
-	//	dependencies: [a => b,c => d]
-	//	result: [b,a,d,c]
 	@Test
 	public void testDependenciesRevertPairOrder() {
 		List<String> tasks = Arrays.asList("a", "b", "c", "d");
@@ -64,9 +53,6 @@ public class ExecutionOrderServiceTest {
 		assertEquals(Arrays.asList("b", "a", "d", "c"), executionOrder);
 	}
 
-	//	tasks: [a,b,c]
-	//	dependencies: [a => b,b => c]
-	//	result: [c,b,a]
 	@Test
 	public void testSequentialDependencyRevertsTaskOrder() {
 		List<String> tasks = Arrays.asList("a", "b", "c");
@@ -78,9 +64,6 @@ public class ExecutionOrderServiceTest {
 		assertEquals(Arrays.asList("c", "b", "a"), executionOrder);
 	}
 	
-	//	tasks: [a,b,c,d]
-	//	dependencies: [a => b,b => c,c => a]
-	//	result: Error - this is a cyclic dependency
 	@Test(expected = CyclicDependencyException.class)
 	public void testCyclicDependencyThrowsException() {
 		List<String> tasks = Arrays.asList("a", "b", "c", "d");
